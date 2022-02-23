@@ -113,6 +113,6 @@ func readCSV(name string) string {
 
 }
 func main() {
-	iterate("./prices")
+	iterate("~/data/prices")
 
 }
