@@ -35,7 +35,7 @@ func createPricesList(data [][]string) []Prices {
 			for j, field := range line {
 				if j == 0 {
 					rec.Timestamp = field
-					fmt.Println(rec.Timestamp)
+					//fmt.Println(rec.Timestamp)
 				} else if j == 1 {
 					rec.Last_traded_price, _ = strconv.ParseFloat(field, 64)
 
