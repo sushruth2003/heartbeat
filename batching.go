@@ -4,6 +4,7 @@ import (
 	"encoding/csv"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -92,6 +93,7 @@ func iterate(path string) {
 		return nil
 	})
 }
+
 func readCSV(name string) string {
 	f, err := os.Open(name)
 	if err != nil {
@@ -113,6 +115,12 @@ func readCSV(name string) string {
 
 }
 func main() {
-	iterate("~/data/prices")
+	files, err := ioutil.ReadDir("./data/prices")
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, file := range files {
+		fmt.Println(file.Name())
+	}
 
 }
