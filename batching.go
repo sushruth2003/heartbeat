@@ -115,7 +115,8 @@ func readCSV(name string) string {
 
 }
 func main() {
-	files, err := ioutil.ReadDir("./data/prices")
+	absPath, _ := filepath.Abs("../data/prices")
+	files, err := ioutil.ReadDir(absPath)
 	if err != nil {
 		log.Fatal(err)
 	}
