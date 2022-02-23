@@ -35,6 +35,7 @@ func createPricesList(data [][]string) []Prices {
 			for j, field := range line {
 				if j == 0 {
 					rec.timestamp = field
+					fmt.Println(rec.timestamp)
 				} else if j == 1 {
 					rec.last_traded_price, _ = strconv.ParseFloat(field, 64)
 
@@ -124,13 +125,13 @@ func main() {
 	for _, file := range files {
 		readCSV(absPath + "/" + file.Name())
 	}
-	absPath, _ = filepath.Abs("../data/depth")
-	files, err = ioutil.ReadDir(absPath)
+	//absPath, _ = filepath.Abs("../data/depth")
+	/*files, err = ioutil.ReadDir(absPath)
 	if err != nil {
 		log.Fatal(err)
 	}
 	for _, file := range files {
 		readCSV(file.Name())
-	}
+	}*/
 
 }
