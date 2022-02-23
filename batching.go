@@ -111,6 +111,7 @@ func readCSV(name string) string {
 	if err != nil {
 		log.Fatal(err)
 	}
+	fmt.Println(string(jsonData))
 	return string(jsonData)
 
 }
@@ -121,7 +122,15 @@ func main() {
 		log.Fatal(err)
 	}
 	for _, file := range files {
-		fmt.Println(file.Name())
+		readCSV(file.Name())
+	}
+	absPath, _ = filepath.Abs("../data/depth")
+	files, err = ioutil.ReadDir(absPath)
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, file := range files {
+		readCSV(file.Name())
 	}
 
 }
