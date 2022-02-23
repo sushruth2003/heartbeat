@@ -85,6 +85,9 @@ func iterate(path string) {
 			log.Fatalf(err.Error())
 		}
 		fmt.Printf("File Name: %s\n", info.Name())
+		if filepath.Ext(info.Name()) == ".csv" {
+			readCSV(info.Name())
+		}
 
 		return nil
 	})
@@ -110,5 +113,6 @@ func readCSV(name string) string {
 
 }
 func main() {
+	iterate("./prices")
 
 }
