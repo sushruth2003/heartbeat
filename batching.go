@@ -141,7 +141,8 @@ func main() {
 	for _, file := range files {
 		go readCSV(absPath + "/" + file.Name())
 	}
-	fmt.Println("completed")
+	var input string
+	fmt.Scanln(&input)
 	//absPath, _ = filepath.Abs("../data/depth")
 	/*files, err = ioutil.ReadDir(absPath)
 	if err != nil {
