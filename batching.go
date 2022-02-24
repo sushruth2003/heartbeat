@@ -9,10 +9,11 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
+	"time"
 )
 
 type Prices struct {
-	Timestamp            string  `json:"date"`
+	Timestamp            int64   `json:"timestamp"`
 	Last_traded_price    float64 `json:"last_traded_price"`
 	Total_buy_qty        float64 `json:"total_buy_qty"`
 	Total_sell_qty       float64 `json:"total_sell_qty"`
@@ -20,7 +21,7 @@ type Prices struct {
 	Pct_change           float64 `json:"pct_change"`
 }
 type Depth struct {
-	Timestamp  string  `json:"date"`
+	Timestamp  int64   `json:"timestamp"`
 	Asset_type string  `json:"type"`
 	Price      float64 `json:"price"`
 	Num_orders float64 `json:"number_of_orders_at_pricepoint"`
@@ -34,7 +35,13 @@ func createPricesList(data [][]string) []Prices {
 			var rec Prices
 			for j, field := range line {
 				if j == 0 {
-					rec.Timestamp = field
+					layout := "2022-02-18 10:44:31"
+					t, err := time.Parse(layout, field)
+					if err != nil {
+						log.Fatal(err)
+					}
+					rec.Timestamp = t.Unix()
+
 					//fmt.Println(rec.Timestamp)
 				} else if j == 1 {
 					rec.Last_traded_price, _ = strconv.ParseFloat(field, 64)
@@ -63,7 +70,14 @@ func createDepthList(data [][]string) []Depth {
 			var rec Depth
 			for j, field := range line {
 				if j == 0 {
-					rec.Timestamp = field
+					layout := "2022-02-18 10:44:31"
+					t, err := time.Parse(layout, field)
+					if err != nil {
+						log.Fatal(err)
+					}
+					rec.Timestamp = t.Unix()
+
+					//fmt.Println(rec.Timestamp)
 				} else if j == 1 {
 					rec.Asset_type = field
 
