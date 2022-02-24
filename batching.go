@@ -35,7 +35,8 @@ func createPricesList(data [][]string) []Prices {
 			var rec Prices
 			for j, field := range line {
 				if j == 0 {
-					layout := "2022-02-18 10:44:31"
+					layout := ""
+					layout = "2006-01-02 15:04:05"
 					t, err := time.Parse(layout, field)
 					if err != nil {
 						log.Fatal(err)
@@ -70,7 +71,8 @@ func createDepthList(data [][]string) []Depth {
 			var rec Depth
 			for j, field := range line {
 				if j == 0 {
-					layout := "2022-02-18 10:44:31"
+					layout := ""
+					layout = "2006-01-02 15:04:05"
 					t, err := time.Parse(layout, field)
 					if err != nil {
 						log.Fatal(err)
